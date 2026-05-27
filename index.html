@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SockSymphony | Носки Nike</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <p class="brand-mark">SockSymphony</p>
+        <p class="brand-sub">Nike Socks Collection</p>
+      </div>
+      <nav class="header-nav" aria-label="Главное меню">
+        <a href="#catalog">Каталог</a>
+        <a href="#order">Заказать</a>
+        <a href="#location">Локация</a>
+        <a href="#history">История заявок</a>
+      </nav>
+      <button id="scrollToOrderBtn" class="btn btn-primary" type="button">Оформить заказ</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <div>
+          <p class="eyebrow">каталог nike носков</p>
+          <h1>Носки Nike для спорта и на каждый день</h1>
+          <p class="hero-text">Выбери нужную модель, укажи контакты и получи заказ без лишних шагов.</p>
+          <p class="hero-note">SockSymphony не является официальным магазином Nike.</p>
+          <div class="hero-actions">
+            <button id="scrollToCatalogBtn" class="btn btn-light" type="button">Смотреть каталог</button>
+            <button id="demoOrderBtn" class="btn btn-outline" type="button">Быстрый тест-заказ</button>
+          </div>
+        </div>
+        <div class="hero-card">
+          <p>Сегодня в наличии</p>
+          <h2>6 моделей Nike</h2>
+          <span>Доставка по городу от 90 минут</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="catalog" class="section container">
+      <div class="section-head">
+        <h2>Каталог Nike</h2>
+        <button id="sortByPriceBtn" class="btn btn-secondary" type="button">Сортировать по цене</button>
+      </div>
+      <div id="catalogGrid" class="catalog-grid" aria-live="polite"></div>
+    </section>
+
+    <section id="order" class="section container">
+      <h2>Оформление заказа</h2>
+      <form id="orderForm" class="order-form">
+        <label>
+          Модель носков
+          <select id="sockSelect" required></select>
+        </label>
+        <label>
+          Количество (пар)
+          <input id="quantityInput" type="number" min="1" max="100" value="1" required />
+        </label>
+        <label>
+          Имя
+          <input id="nameInput" type="text" placeholder="Ваше имя" required />
+        </label>
+        <label>
+          Телефон
+          <input id="phoneInput" type="tel" placeholder="+7 700 000 00 00" required />
+        </label>
+        <label>
+          Адрес доставки
+          <input id="addressInput" type="text" placeholder="Город, улица, дом" required />
+        </label>
+
+        <div class="total-box">
+          <p>Сумма заказа:</p>
+          <strong id="totalPrice">0 ₸</strong>
+        </div>
+
+        <div class="form-actions">
+          <button class="btn btn-primary" type="submit">Подтвердить заказ</button>
+          <button id="resetFormBtn" class="btn btn-secondary" type="button">Очистить форму</button>
+        </div>
+      </form>
+    </section>
+
+    <section id="history" class="section container">
+      <div id="location" class="location-wrap">
+        <h2>Локация магазина</h2>
+        <p class="location-text">
+          Наш магазин SockSymphony находится в Астане, рядом с Astana IT University:
+          <strong>проспект Мәңгілік Ел, C1</strong>.
+        </p>
+        <div class="map-wrap">
+          <img
+            src="https://static.maps.2gis.com/1.0?center=71.41869,51.09014&zoom=16&size=1000,420&markers=71.41869,51.09014"
+            alt="Карта 2ГИС с отметкой рядом с Astana IT University в Астане"
+            loading="lazy"
+          />
+          <a
+            class="btn btn-primary"
+            href="https://2gis.kz/astana/firm/70000001036709805"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Открыть в 2ГИС
+          </a>
+        </div>
+      </div>
+
+      <div class="section-head">
+        <h2>История заявок</h2>
+        <button id="clearHistoryBtn" class="btn btn-danger" type="button">Очистить историю</button>
+      </div>
+      <div id="orderHistory" class="history-list" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <template id="sockCardTemplate">
+    <article class="sock-card">
+      <img class="sock-image" src="" alt="" loading="lazy" />
+      <h3 class="sock-title"></h3>
+      <p class="sock-desc"></p>
+      <div class="sock-bottom">
+        <strong class="sock-price"></strong>
+        <button class="btn btn-primary add-to-order-btn" type="button">Выбрать</button>
+      </div>
+    </article>
+  </template>
+
+  <script src="script.js"></script>
+</body>
+</html>
