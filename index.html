@@ -4,10 +4,330 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SockSymphony | Носки Nike</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
+  <style>
+    :root {
+      --bg: #f4f6fb;
+      --surface: #ffffff;
+      --ink: #111827;
+      --muted: #6b7280;
+      --brand: #ea580c;
+      --brand-dark: #c2410c;
+      --line: #e5e7eb;
+      --danger: #b91c1c;
+      --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 10% 10%, #fff7ed 0, transparent 35%),
+        radial-gradient(circle at 90% 0%, #dbeafe 0, transparent 28%),
+        var(--bg);
+    }
+
+    .container {
+      width: min(1120px, 92vw);
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .header-inner {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .brand-mark {
+      margin: 0;
+      font-weight: 800;
+      letter-spacing: 0.3px;
+      font-size: 1.2rem;
+    }
+
+    .brand-sub {
+      margin: 0;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .header-nav {
+      display: flex;
+      gap: 18px;
+    }
+
+    .header-nav a {
+      color: var(--ink);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .header-nav a:hover,
+    .header-nav a:focus-visible {
+      color: var(--brand-dark);
+    }
+
+    .hero {
+      padding: 64px 0 34px;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      margin: 0;
+      text-transform: uppercase;
+      color: var(--brand-dark);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      font-size: 12px;
+    }
+
+    h1, h2, h3 { margin: 0; }
+
+    h1 {
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      margin-top: 8px;
+    }
+
+    .hero-text {
+      margin-top: 12px;
+      color: var(--muted);
+      max-width: 560px;
+    }
+
+    .hero-note {
+      margin: 10px 0 0;
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: #ffedd5;
+      color: #9a3412;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .hero-actions {
+      margin-top: 18px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .hero-card {
+      background: linear-gradient(145deg, #0f172a, #1e293b);
+      color: #f8fafc;
+      padding: 26px;
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card p { margin: 0; color: #cbd5e1; }
+
+    .hero-card h2 {
+      margin-top: 8px;
+      font-size: 2rem;
+    }
+
+    .hero-card span {
+      display: inline-block;
+      margin-top: 12px;
+      color: #fbbf24;
+      font-weight: 600;
+    }
+
+    .section {
+      margin-top: 30px;
+      padding: 26px;
+      border-radius: 18px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .catalog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .sock-card {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 16px;
+      background: #f9fafb;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .sock-image {
+      width: 100%;
+      height: 170px;
+      object-fit: cover;
+      border-radius: 10px;
+      border: 1px solid #e5e7eb;
+    }
+
+    .sock-desc {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .sock-bottom {
+      margin-top: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .order-form {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .order-form label {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .order-form input,
+    .order-form select {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 11px 12px;
+      font: inherit;
+    }
+
+    .total-box {
+      grid-column: 1 / -1;
+      border: 1px dashed #fdba74;
+      border-radius: 12px;
+      padding: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .total-box p { margin: 0; color: var(--muted); }
+    .total-box strong { font-size: 1.2rem; }
+
+    .form-actions {
+      grid-column: 1 / -1;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .location-wrap { margin-bottom: 20px; }
+
+    .location-text {
+      margin: 10px 0 14px;
+      color: var(--muted);
+    }
+
+    .map-wrap {
+      display: grid;
+      gap: 10px;
+    }
+
+    .map-wrap img {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+    }
+
+    .history-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .history-item {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 12px;
+      display: grid;
+      gap: 6px;
+    }
+
+    .history-meta {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .btn {
+      border: none;
+      border-radius: 10px;
+      padding: 10px 14px;
+      cursor: pointer;
+      font: inherit;
+      font-weight: 700;
+      transition: transform 120ms ease, opacity 120ms ease, background-color 120ms ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn:hover,
+    .btn:focus-visible {
+      transform: translateY(-1px);
+      opacity: 0.95;
+    }
+
+    .btn-primary { background: var(--brand); color: white; }
+    .btn-secondary { background: #e2e8f0; color: #0f172a; }
+    .btn-light { background: #fef3c7; color: #92400e; }
+    .btn-outline { background: transparent; border: 1px solid #1e293b; color: #1e293b; }
+    .btn-danger { background: #fee2e2; color: var(--danger); }
+
+    @media (max-width: 920px) {
+      .hero-inner,
+      .catalog-grid,
+      .order-form { grid-template-columns: 1fr; }
+
+      .header-inner {
+        flex-wrap: wrap;
+        padding: 12px 0;
+      }
+
+      .header-nav {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
 </head>
 <body>
   <header class="site-header">
@@ -104,12 +424,7 @@
             alt="Карта 2ГИС с отметкой рядом с Astana IT University в Астане"
             loading="lazy"
           />
-          <a
-            class="btn btn-primary"
-            href="https://2gis.kz/astana/firm/70000001036709805"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a class="btn btn-primary" href="https://2gis.kz/astana/firm/70000001036709805" target="_blank" rel="noopener noreferrer">
             Открыть в 2ГИС
           </a>
         </div>
@@ -135,6 +450,259 @@
     </article>
   </template>
 
-  <script src="script.js"></script>
+  <script>
+    const SVG_THEMES = [
+      { bg1: "#fff7ed", bg2: "#fde68a", sock1: "#111827", sock2: "#1f2937" },
+      { bg1: "#eff6ff", bg2: "#bfdbfe", sock1: "#0f172a", sock2: "#1d4ed8" },
+      { bg1: "#ecfdf5", bg2: "#a7f3d0", sock1: "#052e16", sock2: "#047857" },
+      { bg1: "#fef2f2", bg2: "#fecaca", sock1: "#450a0a", sock2: "#b91c1c" },
+      { bg1: "#faf5ff", bg2: "#ddd6fe", sock1: "#312e81", sock2: "#6d28d9" },
+      { bg1: "#f8fafc", bg2: "#cbd5e1", sock1: "#0f172a", sock2: "#334155" },
+    ];
+
+    function makeSockSvg(theme, label) {
+      return `
+      <svg xmlns="http://www.w3.org/2000/svg" width="800" height="520" viewBox="0 0 800 520" role="img" aria-label="${label}">
+        <defs>
+          <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="${theme.bg1}"/>
+            <stop offset="100%" stop-color="${theme.bg2}"/>
+          </linearGradient>
+        </defs>
+        <rect width="800" height="520" rx="28" fill="url(#bg)"/>
+        <g transform="translate(186 66)">
+          <path d="M136 0h128v165c0 54 30 74 74 74h62v90H234c-74 0-98-35-98-101V0z" fill="${theme.sock1}"/>
+          <path d="M112 23h128v165c0 54 30 74 74 74h62v90H210c-74 0-98-35-98-101V23z" fill="${theme.sock2}"/>
+          <text x="162" y="108" font-size="44" font-family="Arial,sans-serif" fill="#ffffff" font-weight="700">NIKE</text>
+        </g>
+      </svg>`;
+    }
+
+    const SOCKS = [
+      { id: "nike-everyday-cushion", name: "Nike Everyday Cushion Crew", desc: "Комфортные хлопковые носки для ежедневной носки.", price: 5900 },
+      { id: "nike-dri-fit-training", name: "Nike Dri-FIT Training", desc: "Влагоотводящая ткань для интенсивных тренировок.", price: 7200 },
+      { id: "nike-performance-ankle", name: "Nike Performance Ankle", desc: "Низкие носки для бега и зала с плотной посадкой.", price: 5300 },
+      { id: "nike-elite-basketball", name: "Nike Elite Basketball", desc: "Усиленная амортизация и поддержка стопы.", price: 8900 },
+      { id: "nike-cotton-value-pack", name: "Nike Cotton Value Pack", desc: "Набор из 3 пар для повседневного использования.", price: 8400 },
+      { id: "nike-spark-lightweight", name: "Nike Spark Lightweight", desc: "Легкие беговые носки с вентиляционными зонами.", price: 7600 },
+    ].map((item, i) => {
+      const svg = makeSockSvg(SVG_THEMES[i % SVG_THEMES.length], `Носки ${item.name}`);
+      const image = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
+      return { ...item, image };
+    });
+
+    const HISTORY_KEY = "socksymphony_order_history";
+
+    const catalogGrid = document.getElementById("catalogGrid");
+    const sockCardTemplate = document.getElementById("sockCardTemplate");
+    const sockSelect = document.getElementById("sockSelect");
+    const quantityInput = document.getElementById("quantityInput");
+    const totalPrice = document.getElementById("totalPrice");
+    const orderForm = document.getElementById("orderForm");
+    const orderHistory = document.getElementById("orderHistory");
+
+    const sortByPriceBtn = document.getElementById("sortByPriceBtn");
+    const clearHistoryBtn = document.getElementById("clearHistoryBtn");
+    const resetFormBtn = document.getElementById("resetFormBtn");
+    const scrollToCatalogBtn = document.getElementById("scrollToCatalogBtn");
+    const scrollToOrderBtn = document.getElementById("scrollToOrderBtn");
+    const demoOrderBtn = document.getElementById("demoOrderBtn");
+
+    let isSortedAsc = true;
+
+    function formatKzt(value) {
+      return `${value.toLocaleString("ru-RU")} ₸`;
+    }
+
+    function getSockById(id) {
+      return SOCKS.find((sock) => sock.id === id);
+    }
+
+    function renderCatalog(items) {
+      catalogGrid.innerHTML = "";
+
+      items.forEach((sock) => {
+        const card = sockCardTemplate.content.cloneNode(true);
+        const article = card.querySelector(".sock-card");
+        const image = article.querySelector(".sock-image");
+
+        image.src = sock.image;
+        image.alt = `${sock.name} - фото модели`;
+        article.querySelector(".sock-title").textContent = sock.name;
+        article.querySelector(".sock-desc").textContent = sock.desc;
+        article.querySelector(".sock-price").textContent = formatKzt(sock.price);
+
+        article.querySelector(".add-to-order-btn").addEventListener("click", () => {
+          sockSelect.value = sock.id;
+          quantityInput.value = 1;
+          updateTotalPrice();
+          document.getElementById("order").scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+
+        catalogGrid.appendChild(card);
+      });
+    }
+
+    function renderSockSelect() {
+      sockSelect.innerHTML = "";
+
+      SOCKS.forEach((sock) => {
+        const option = document.createElement("option");
+        option.value = sock.id;
+        option.textContent = `${sock.name} - ${formatKzt(sock.price)}`;
+        sockSelect.appendChild(option);
+      });
+    }
+
+    function updateTotalPrice() {
+      const selectedSock = getSockById(sockSelect.value);
+      const quantity = Math.max(1, Number.parseInt(quantityInput.value, 10) || 1);
+      quantityInput.value = quantity;
+
+      if (!selectedSock) {
+        totalPrice.textContent = "0 ₸";
+        return;
+      }
+
+      totalPrice.textContent = formatKzt(selectedSock.price * quantity);
+    }
+
+    function readOrderHistory() {
+      try {
+        const value = localStorage.getItem(HISTORY_KEY);
+        return value ? JSON.parse(value) : [];
+      } catch (error) {
+        console.error("Ошибка чтения истории", error);
+        return [];
+      }
+    }
+
+    function saveOrderHistory(history) {
+      localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
+    }
+
+    function renderOrderHistory() {
+      const history = readOrderHistory();
+      orderHistory.innerHTML = "";
+
+      if (history.length === 0) {
+        orderHistory.innerHTML = "<p>Пока нет заявок. Оформите первый заказ.</p>";
+        return;
+      }
+
+      history.forEach((order) => {
+        const item = document.createElement("article");
+        item.className = "history-item";
+        item.innerHTML = `
+          <strong>${order.customerName}</strong>
+          <span>${order.sockName} x ${order.quantity} = ${formatKzt(order.total)}</span>
+          <span>${order.phone}, ${order.address}</span>
+          <span class="history-meta">${new Date(order.createdAt).toLocaleString("ru-RU")}</span>
+        `;
+        orderHistory.appendChild(item);
+      });
+    }
+
+    function submitOrder(event) {
+      event.preventDefault();
+
+      const selectedSock = getSockById(sockSelect.value);
+      if (!selectedSock) {
+        alert("Выберите модель носков.");
+        return;
+      }
+
+      const quantity = Math.max(1, Number.parseInt(quantityInput.value, 10) || 1);
+      const customerName = document.getElementById("nameInput").value.trim();
+      const phone = document.getElementById("phoneInput").value.trim();
+      const address = document.getElementById("addressInput").value.trim();
+
+      if (!customerName || !phone || !address) {
+        alert("Заполните все поля заказа.");
+        return;
+      }
+
+      const newOrder = {
+        id: (crypto.randomUUID && crypto.randomUUID()) || `order-${Date.now()}`,
+        sockId: selectedSock.id,
+        sockName: selectedSock.name,
+        quantity,
+        total: selectedSock.price * quantity,
+        customerName,
+        phone,
+        address,
+        createdAt: new Date().toISOString(),
+      };
+
+      const history = readOrderHistory();
+      history.unshift(newOrder);
+      saveOrderHistory(history);
+      renderOrderHistory();
+
+      alert("Заказ успешно оформлен!");
+      orderForm.reset();
+      quantityInput.value = 1;
+      updateTotalPrice();
+    }
+
+    function clearHistory() {
+      const confirmed = confirm("Удалить всю историю заявок?");
+      if (!confirmed) return;
+      saveOrderHistory([]);
+      renderOrderHistory();
+    }
+
+    function resetForm() {
+      orderForm.reset();
+      quantityInput.value = 1;
+      updateTotalPrice();
+    }
+
+    function scrollToSection(sectionId) {
+      document.getElementById(sectionId).scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    function createDemoOrder() {
+      const demoSock = SOCKS[0];
+      sockSelect.value = demoSock.id;
+      quantityInput.value = 2;
+      document.getElementById("nameInput").value = "Тестовый клиент";
+      document.getElementById("phoneInput").value = "+7 777 123 45 67";
+      document.getElementById("addressInput").value = "Астана, пр. Мәңгілік Ел, C1";
+      updateTotalPrice();
+      scrollToSection("order");
+    }
+
+    function toggleSortCatalog() {
+      const sorted = [...SOCKS].sort((a, b) => isSortedAsc ? a.price - b.price : b.price - a.price);
+      renderCatalog(sorted);
+      isSortedAsc = !isSortedAsc;
+      sortByPriceBtn.textContent = isSortedAsc ? "Сортировать по цене" : "Сбросить сортировку";
+    }
+
+    function bindEvents() {
+      sockSelect.addEventListener("change", updateTotalPrice);
+      quantityInput.addEventListener("input", updateTotalPrice);
+      orderForm.addEventListener("submit", submitOrder);
+
+      clearHistoryBtn.addEventListener("click", clearHistory);
+      resetFormBtn.addEventListener("click", resetForm);
+      sortByPriceBtn.addEventListener("click", toggleSortCatalog);
+
+      scrollToCatalogBtn.addEventListener("click", () => scrollToSection("catalog"));
+      scrollToOrderBtn.addEventListener("click", () => scrollToSection("order"));
+      demoOrderBtn.addEventListener("click", createDemoOrder);
+    }
+
+    function init() {
+      renderCatalog(SOCKS);
+      renderSockSelect();
+      bindEvents();
+      updateTotalPrice();
+      renderOrderHistory();
+    }
+
+    init();
+  </script>
 </body>
 </html>
